@@ -52,14 +52,12 @@ public class Car {
         cars.add(car5);
 
         List<String> messages = new ArrayList<>();
-        if (count > 0 && count <= 5) {
+        if (count > 0) {
             for (int i = 0; i < count; i++) {
+                if (count > 5) {
+                    count = 5;
+                }
                 messages.add(cars.get(i).toString());
-            }
-        }
-        if(count>5){
-            for (Car car :cars){
-                messages.add(car.toString());
             }
         }
         model.addAttribute("messages", messages);
