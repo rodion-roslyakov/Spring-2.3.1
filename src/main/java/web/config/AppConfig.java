@@ -14,13 +14,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import web.model.User;
-
 
 import javax.sql.DataSource;
 import java.util.Properties;
-
 
 @Configuration
 @PropertySource("classpath:db.properties")
@@ -28,8 +24,8 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class AppConfig {
 
-        @Autowired
-        private Environment env;
+    @Autowired
+    private Environment env;
 
     @Bean
     public DataSource dataSource() {
