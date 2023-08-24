@@ -1,16 +1,39 @@
 package web.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @NotEmpty(message = "FirstName must be not empty")
+    @Pattern(regexp = "[A-Z]{1}[a-z]+", message = "FName should be in this format: e.g. Rodion, Andrew")
     @Column(name = "first_name")
     private String firstName;
+    @NotEmpty(message = "SecondName must be not empty")
+    @Pattern(regexp = "[A-Z]{1}[a-z]+", message = "SName should be in this format: Roslyakov")
+    @Column(name = "second_name")
+    private String secondName;
+    @Positive(message = "Age must be positive")
+    @Column(name = "age")
+    private int age;
+
+    public User() {
+
+    }
+
+    public User(String firstName, String secondName, int age) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.age = age;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -40,15 +63,6 @@ public class User {
         this.age = age;
     }
 
-    @Column(name = "second_name")
-    private String secondName;
-    @Column(name = "age")
-    private int age;
-
-    public User() {
-
-    }
-
     public int getId() {
         return id;
     }
@@ -61,13 +75,5 @@ public class User {
                 ", surname='" + secondName + '\'' +
                 ", age=" + age +
                 '}';
-    }
-
-
-
-    public User(String firstName, String secondName, int age) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.age = age;
     }
 }
